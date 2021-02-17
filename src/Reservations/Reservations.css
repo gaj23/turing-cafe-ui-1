@@ -1,0 +1,9 @@
+.resy-container {
+  width: 90%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+}

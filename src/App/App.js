@@ -6,6 +6,23 @@ import Reservations from '../Reservations/Reservations';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      error: false,
+      loading: true,
+      reservations: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3001/api/v1/reservations')
+      .then(response => response.json())
+      .then(response => this.setState({reservations: response}))
+      .catch(error => console.log(`We're having the following error: ${error}`))
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -13,9 +30,7 @@ class App extends Component {
         <div className='resy-form'>
           <Form />
         </div>
-        <div className='resy-container'>
-          <Reservations />
-        </div>
+          <Reservations reservations={this.state.reservations}/>
       </div>
     )
   }
