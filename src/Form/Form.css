@@ -1,0 +1,17 @@
+form {
+  margin: auto;
+}
+
+input {
+  margin: 5px;
+  width: 30%;
+  border: 2px solid black;
+  font-size: 18px;
+}
+
+button {
+  color: white;
+  background-color: teal;
+  border: none;
+  border-shadow: none;
+}

@@ -7,3 +7,12 @@
   color: teal;
   background-color: white;
 }
+
+.cancel-button {
+  width: 89%;
+  padding: 8px;
+  background-color: teal;
+  color: white;
+  border: 0;
+  box-shadow: none;
+}

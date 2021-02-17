@@ -22,7 +22,6 @@ class App extends Component {
       .catch(error => console.log(`We're having the following error: ${error}`))
   }
 
-
   render() {
     return (
       <div className="App">
