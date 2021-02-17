@@ -69,4 +69,20 @@ describe('Turing Cafe', () => {
       cy.get('img')
     })
   })
+
+  describe.only('Loading Message', () => {
+    beforeEach(() => {
+      cy.fixture('example-data.json')
+        .then(data => {
+          cy.intercept(baseURL, {
+            body: data.reservations
+          })
+        })
+      cy.visit('http://localhost:3000');
+    })
+
+    it('Should display if the page is loading', () => {
+      cy.get('h2').contains('Please wait')
+    })
+  })
 })
