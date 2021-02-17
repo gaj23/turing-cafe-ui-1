@@ -54,5 +54,19 @@ describe('Turing Cafe', () => {
     })
   })
 
+  describe('Error Handling', () => {
+    beforeEach(() => {
+      cy.fixture('example-data.json')
+        .then(data => {
+          cy.intercept(baseURL, {
+            statusCode: 404
+          })
+        })
+      cy.visit('http://localhost:3000');
+    })
 
+    it('Should display if there\'s been an error', () => {
+      cy.get('img')
+    })
+  })
 })

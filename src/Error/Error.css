@@ -1,3 +1,10 @@
 img {
-  margin: 4rem;
+  margin-top: 4rem;
+}
+
+.error-msg {
+  color: white;
+  background-color: teal;
+  padding: 10px;
+  border-radius: 8px;
 }
