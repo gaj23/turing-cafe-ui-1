@@ -23,11 +23,36 @@ describe('Turing Cafe', () => {
     it('Should have a area to display reservations', () => {
       cy.get('section').should('contain', 'Maureen')
     })
-
   })
 
+  describe('Reservation Form', () => {
+    beforeEach(() => {
+      cy.fixture('example-data.json')
+        .then(data => {
+          cy.intercept(baseURL, {
+            body: data.reservations
+          })
+        })
+      cy.visit('http://localhost:3000');
+    })
 
+    it('Should update value based on user input', () => {
+      cy.get('form input[name=name]').type('Gabrielle').should('have.value', 'Gabrielle')
+      cy.get('form input[name=date]').type('02/17').should('have.value', '02/17')
+      cy.get('form input[name=time]').type('12:45').should('have.value', '12:45')
+      cy.get('form input[name=number]').type('8').should('have.value', '8')
+      cy.get('form button').click();
+    })
 
+    it('Should have new reservation when submitted', () => {
+      cy.get('form input[name=name]').type('Gabrielle')
+      cy.get('form input[name=date]').type('02/17')
+      cy.get('form input[name=time]').type('12:45')
+      cy.get('form input[name=number]').type('8')
+      cy.get('form button').click();
+      cy.get('section article').should('contain', 'Gabrielle')
+    })
+  })
 
 
 })
