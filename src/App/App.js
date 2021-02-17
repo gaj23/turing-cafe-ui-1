@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Form from '../Form/Form';
 import Reservations from '../Reservations/Reservations';
+import Error from '../Error/Error'
 
 import './App.css';
 
@@ -16,10 +17,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
+    fetch('http://localhost:3001/api/v1/reserations')
       .then(response => response.json())
-      .then(response => this.setState({reservations: response}))
-      .catch(error => console.log(`We're having the following error: ${error}`))
+      .then(response => this.setState({reservations: response, loading: false}))
+      .catch(error => this.setState({error: true, loading: false}))
   }
 
   addReservation = resy => {
@@ -35,6 +36,9 @@ class App extends Component {
   }
 
   cancelReservation = id => {
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+      method:'DELETE'
+    })
     const filteredReservations = this.state.reservations.filter(resy =>  resy.id !== id)
 
     this.setState({ reservations: filteredReservations})
@@ -48,6 +52,7 @@ class App extends Component {
           <Form
             addReservation={this.addReservation}/>
         </div>
+          {this.state.error && <Error />}
           <Reservations
             reservations={this.state.reservations}
             cancelReservation={this.cancelReservation}
