@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Form from '../Form/Form';
 import Reservations from '../Reservations/Reservations';
 import Error from '../Error/Error'
+import Loading from '../Loading/Loading'
 
 import './App.css';
 
@@ -52,6 +53,7 @@ class App extends Component {
           <Form
             addReservation={this.addReservation}/>
         </div>
+          {this.state.loading && <Loading />}
           {this.state.error && <Error />}
           <Reservations
             reservations={this.state.reservations}
