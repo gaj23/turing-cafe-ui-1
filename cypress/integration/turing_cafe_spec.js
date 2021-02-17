@@ -13,13 +13,15 @@ describe('Turing Cafe', () => {
     })
 
     it('Should have a title', () => {
-      
+      cy.get('h1').contains('Turing Cafe Reservations')
     })
 
     it('Should have a reservation form', () => {
+      cy.get('form').should('be.visible')
     })
 
     it('Should have a area to display reservations', () => {
+      cy.get('section').should('contain', 'Maureen')
     })
 
   })
