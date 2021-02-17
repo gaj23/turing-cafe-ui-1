@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 
 import './Reservations.css';
 
-const Reservations = ({ reservations }) => {
+const Reservations = ({ reservations, cancelReservation }) => {
 
   const reservationCards =  reservations.map(reservation => {
     return (<Card
@@ -14,6 +14,7 @@ const Reservations = ({ reservations }) => {
         date={reservation.date}
         time={reservation.time}
         number={reservation.number}
+        cancelReservation={cancelReservation}
       />
     )
   })
