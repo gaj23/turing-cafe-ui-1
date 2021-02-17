@@ -2,16 +2,18 @@ form {
   margin: auto;
 }
 
-input {
+input, .reserve {
   margin: 5px;
   width: 30%;
   border: 2px solid black;
   font-size: 18px;
 }
 
-button {
+.reserve {
   color: white;
   background-color: teal;
-  border: none;
-  border-shadow: none;
+  border: 0;
+  box-shadow: none;
+  padding: 6px;
+  width: 35%;
 }
