@@ -6,7 +6,6 @@ class Form extends Component {
   constructor() {
     super();
     this.state = {
-      id: Date.now(),
       name: '',
       date: '',
       time: '',
@@ -18,7 +17,24 @@ class Form extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  submitReservation = event => {
+    event.preventDefault();
+    const newResy = {
+      id: Date.now(),
+      ...this.state
+    }
+    this.props.addReservation(newResy);
+    this.clearInputs();
+  }
 
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      date: '',
+      time: '',
+      number: ''
+    })
+  }
 //number is a number data type, must change from string to num ParseInt()
 
   render() {
@@ -52,7 +68,7 @@ class Form extends Component {
           value={this.state.number}
           onChange={event => this.handleChange(event)}
         />
-        <button className='reserve'>Make Reservation</button>
+        <button className='reserve' onClick={event => this.submitReservation(event)}>Make Reservation</button>
       </form>
     )
   }
